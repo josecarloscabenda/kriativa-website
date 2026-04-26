@@ -33,8 +33,21 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# data storage (leads, contacts)
+/.data
+
+# Payload uploads (local media)
+/media
+
+# Payload generated types (regenerated on dev / deploy)
+/src/payload-types.ts
+
 # vercel
 .vercel
+
+# source/reference materials (not part of codebase)
+Manual_da_Marca_KRIATIVA_v2*.html
+Plano de Negócios*.md
 
 # typescript
 *.tsbuildinfo
