@@ -39,8 +39,8 @@ yarn-error.log*
 # Payload uploads (local media)
 /media
 
-# Payload generated types (regenerated on dev / deploy)
-/src/payload-types.ts
+# Payload generated types — committed so Vercel build has them.
+# Regenerate locally with `npm run generate:types` after editing collections.
 
 # vercel
 .vercel
