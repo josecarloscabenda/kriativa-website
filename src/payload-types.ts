@@ -158,6 +158,8 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Biblioteca central de imagens e ficheiros. Tudo o que carrega aqui fica disponível para usar em Portefólio (capa), Blog (capa), Testemunhos (avatar). Pode também carregar directamente a partir desses formulários — fica aqui automaticamente.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -301,7 +303,7 @@ export interface Portfolio {
       }[]
     | null;
   /**
-   * Imagem de capa do projecto (opcional).
+   * Imagem que aparece no cartão do projecto. Carregue um ficheiro novo ou escolha um existente da Media library.
    */
   image?: (number | null) | Media;
   /**
@@ -326,6 +328,9 @@ export interface Testimonial {
   role: string;
   company: string;
   content: string;
+  /**
+   * Foto da pessoa (opcional). Se não houver, mostra-se um círculo com a inicial.
+   */
   avatar?: (number | null) | Media;
   order?: number | null;
   updatedAt: string;
@@ -344,9 +349,12 @@ export interface Post {
    * Conteúdo do artigo em Markdown (renderizado com MDX).
    */
   content: string;
+  /**
+   * Imagem destacada do artigo (cartão na listagem do blog e topo do post). Carregue um ficheiro novo ou escolha um existente da Media library.
+   */
   coverImage?: (number | null) | Media;
   /**
-   * Caminho legacy para imagem em /public (usado quando coverImage não está definido).
+   * Apenas usado se 'Imagem de capa' não estiver definido. Caminho relativo a /public (ex. /placeholder-blog-1.svg).
    */
   imagePath?: string | null;
   tags?:

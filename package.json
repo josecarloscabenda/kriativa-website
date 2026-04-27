@@ -14,6 +14,7 @@
     "seed": "node --env-file=.env.local --import tsx src/payload/seed.ts",
     "translate": "node --env-file=.env.local --import tsx src/payload/translate.ts",
     "seed:questionnaire": "node --env-file=.env.local --import tsx src/payload/seed-questionnaire.ts",
+    "seed:extra-questionnaires": "node --env-file=.env.local --import tsx src/payload/seed-extra-questionnaires.ts",
     "payload": "payload"
   },
   "dependencies": {
