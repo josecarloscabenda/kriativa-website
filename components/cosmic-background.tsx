@@ -10,7 +10,8 @@
  *   - text-brand-grey-XX classes   → grey shade (60 darker · 40 medium · 20 lighter)
  */
 
-const RING_RADII = [7.07, 14.14, 21.21, 28.29, 35.36, 42.43, 49.5, 56.57, 63.64, 70.71, 77.79, 84.86, 91.93, 99.0]
+// Reduced to ~30% of the original 14-ring set — keeps the cosmic feel without saturating the canvas.
+const RING_RADII = [14.14, 42.43, 70.71, 99.0]
 
 // Stars scattered across the canvas (coords on 200×200 viewBox).
 const DOTS = [
