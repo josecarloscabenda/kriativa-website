@@ -10,33 +10,19 @@
  *   - text-brand-grey-XX classes   → grey shade (60 darker · 40 medium · 20 lighter)
  */
 
-// Reduced to ~30% of the original 14-ring set — keeps the cosmic feel without saturating the canvas.
-const RING_RADII = [14.14, 42.43, 70.71, 99.0]
+// Sparse ring set — keeps the cosmic feel without saturating the canvas.
+const RING_RADII = [42.43, 99.0]
 
-// Stars scattered across the canvas (coords on 200×200 viewBox).
+// Sparse stars scattered across the canvas (coords on 200×200 viewBox).
 const DOTS = [
   { cx: 28, cy: 38, r: 1.2 },
-  { cx: 62, cy: 22, r: 0.8 },
   { cx: 148, cy: 30, r: 1.0 },
   { cx: 178, cy: 70, r: 0.7 },
   { cx: 165, cy: 158, r: 1.2 },
-  { cx: 110, cy: 188, r: 0.9 },
   { cx: 42, cy: 170, r: 1.0 },
   { cx: 12, cy: 110, r: 0.7 },
   { cx: 86, cy: 16, r: 0.9 },
-  { cx: 190, cy: 120, r: 0.9 },
-  { cx: 50, cy: 88, r: 0.7 },
-  { cx: 152, cy: 92, r: 0.7 },
-  { cx: 75, cy: 145, r: 0.9 },
   { cx: 130, cy: 65, r: 0.7 },
-  { cx: 100, cy: 50, r: 0.6 },
-  { cx: 100, cy: 150, r: 0.6 },
-  { cx: 35, cy: 132, r: 0.6 },
-  { cx: 165, cy: 50, r: 0.6 },
-  { cx: 22, cy: 75, r: 0.5 },
-  { cx: 180, cy: 175, r: 0.5 },
-  { cx: 60, cy: 60, r: 0.5 },
-  { cx: 140, cy: 130, r: 0.5 },
 ]
 
 export function CosmicBackground() {
