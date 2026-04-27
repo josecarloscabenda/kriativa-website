@@ -37,7 +37,7 @@ export async function Footer() {
                 alt={siteConfig.name}
                 width={180}
                 height={50}
-                className="h-8 w-auto"
+                className="h-24 w-auto"
               />
             </Link>
             <p className="font-display text-xs uppercase tracking-[0.32em] text-brand-grey-40">

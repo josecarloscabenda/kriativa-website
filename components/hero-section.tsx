@@ -7,12 +7,11 @@ import { siteConfig } from "@/site.config"
 import { CosmicBackground } from "@/components/cosmic-background"
 
 /**
- * 🎨 HERO SIZES — adjust these to resize the logo on the homepage.
- * SYMBOL_SIZE controls the round dot (px). LETTERING_MAX_WIDTH controls
- * the KRIATIVA wordmark below it (Tailwind classes).
+ * 🎨 HERO LOGO SIZE — adjust to resize the lockup on the homepage.
+ * Tailwind: max-w-xs (320px) · max-w-sm (384px) · max-w-md (448px)
+ *           max-w-lg (512px) · max-w-xl (576px) · max-w-2xl (672px)
  */
-const SYMBOL_SIZE_CLASS = "h-32 w-32 sm:h-40 sm:w-40 lg:h-48 lg:w-48"
-const LETTERING_MAX_WIDTH_CLASS = "max-w-xs sm:max-w-sm lg:max-w-md"
+const LOGO_MAX_WIDTH_CLASS = "max-w-md sm:max-w-lg lg:max-w-2xl"
 
 export async function HeroSection() {
   const t = await getTranslations("Hero")
@@ -26,45 +25,15 @@ export async function HeroSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
-          {/* Logo lockup — symbol (interactive) + lettering + tagline */}
-          <a
-            href="#hero-anchor"
-            className="group relative mx-auto flex w-fit flex-col items-center"
-            aria-label={`${siteConfig.name} — ${tCommon("tagline")}`}
-            id="hero-anchor"
-          >
-            {/* Backdrop circle that appears on hover so the white symbol stays visible */}
-            <span
-              aria-hidden
-              className={`absolute top-0 ${SYMBOL_SIZE_CLASS} rounded-full bg-black scale-0 group-hover:scale-110 transition-transform duration-500 ease-out`}
-            />
-
-            {/* The animated dot (mask-based so we can flip background-color on hover) */}
-            <span
-              aria-hidden
-              className={`relative ${SYMBOL_SIZE_CLASS} bg-black group-hover:bg-white transition-[background-color,transform] duration-500 ease-out group-hover:rotate-180`}
-              style={{
-                WebkitMaskImage: "url(/simbolo_original.svg)",
-                maskImage: "url(/simbolo_original.svg)",
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
-                WebkitMaskPosition: "center",
-                maskPosition: "center",
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-              }}
-            />
-
-            {/* KRIATIVA wordmark + tagline (static SVG that already includes both) */}
-            <Image
-              src="/lettering_original.svg"
-              alt={siteConfig.name}
-              width={720}
-              height={203}
-              priority
-              className={`mt-6 sm:mt-8 h-auto w-full ${LETTERING_MAX_WIDTH_CLASS}`}
-            />
-          </a>
+          {/* Full logo lockup — symbol + KRIATIVA + tagline */}
+          <Image
+            src="/logo_original.svg"
+            alt={`${siteConfig.name} — ${tCommon("tagline")}`}
+            width={720}
+            height={405}
+            priority
+            className={`mx-auto h-auto w-full ${LOGO_MAX_WIDTH_CLASS}`}
+          />
 
           <h1 className="mt-12 font-display text-3xl tracking-tight text-black sm:text-4xl lg:text-5xl">
             {t("headlineLead")}{" "}
