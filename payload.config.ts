@@ -28,6 +28,17 @@ export default buildConfig({
     meta: {
       titleSuffix: " — Kriativa",
     },
+    components: {
+      afterNavLinks: ["@/components/payload/DocsLink"],
+      views: {
+        documentacao: {
+          Component: "@/components/payload/DocsView",
+          path: "/documentacao",
+          exact: true,
+          meta: { title: "Documentação" },
+        },
+      },
+    },
   },
   collections: [
     Users,

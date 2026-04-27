@@ -48,11 +48,13 @@ export const Portfolio: CollectionConfig = {
     },
     {
       name: "image",
+      label: "Imagem de capa",
       type: "upload",
       relationTo: "media",
       required: false,
       admin: {
-        description: "Imagem de capa do projecto (opcional).",
+        description:
+          "Imagem que aparece no cartão do projecto. Carregue um ficheiro novo ou escolha um existente da Media library.",
       },
     },
     {

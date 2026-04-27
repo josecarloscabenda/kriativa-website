@@ -39,9 +39,14 @@ export const Testimonials: CollectionConfig = {
     },
     {
       name: "avatar",
+      label: "Foto / Avatar",
       type: "upload",
       relationTo: "media",
       required: false,
+      admin: {
+        description:
+          "Foto da pessoa (opcional). Se não houver, mostra-se um círculo com a inicial.",
+      },
     },
     {
       name: "order",

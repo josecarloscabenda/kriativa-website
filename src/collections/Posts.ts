@@ -45,17 +45,23 @@ export const Posts: CollectionConfig = {
     },
     {
       name: "coverImage",
+      label: "Imagem de capa",
       type: "upload",
       relationTo: "media",
       required: false,
+      admin: {
+        description:
+          "Imagem destacada do artigo (cartão na listagem do blog e topo do post). Carregue um ficheiro novo ou escolha um existente da Media library.",
+      },
     },
     {
       name: "imagePath",
+      label: "Caminho de imagem (legacy)",
       type: "text",
       required: false,
       admin: {
         description:
-          "Caminho legacy para imagem em /public (usado quando coverImage não está definido).",
+          "Apenas usado se 'Imagem de capa' não estiver definido. Caminho relativo a /public (ex. /placeholder-blog-1.svg).",
       },
     },
     {

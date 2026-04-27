@@ -2,11 +2,17 @@ import type { CollectionConfig } from "payload"
 
 export const Media: CollectionConfig = {
   slug: "media",
+  labels: {
+    singular: "Ficheiro",
+    plural: "Media (Biblioteca de Ficheiros)",
+  },
   access: {
     read: () => true,
   },
   admin: {
     useAsTitle: "filename",
+    description:
+      "Biblioteca central de imagens e ficheiros. Tudo o que carrega aqui fica disponível para usar em Portefólio (capa), Blog (capa), Testemunhos (avatar). Pode também carregar directamente a partir desses formulários — fica aqui automaticamente.",
   },
   upload: {
     staticDir: "media",
