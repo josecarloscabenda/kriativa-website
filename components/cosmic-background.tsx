@@ -10,8 +10,8 @@
  *   - text-brand-grey-XX classes   → grey shade (60 darker · 40 medium · 20 lighter)
  */
 
-// Sparse ring set — keeps the cosmic feel without saturating the canvas.
-const RING_RADII = [42.43, 99.0]
+// No rings — only the scattered stars rotate. Add radii here to bring rings back.
+const RING_RADII: number[] = []
 
 // Sparse stars scattered across the canvas (coords on 200×200 viewBox).
 const DOTS = [
