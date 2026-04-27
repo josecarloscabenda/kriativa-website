@@ -3,7 +3,7 @@ import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
-import "./globals.css"
+import "../globals.css"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { siteConfig } from "@/site.config"
@@ -11,6 +11,7 @@ import { routing } from "@/i18n/routing"
 
 const gugi = localFont({
   src: "../../../public/fontes/Gugi-Regular.ttf",
+  // Path note: from app/(frontend)/[locale]/layout.tsx, three levels up to project root.
   variable: "--font-gugi",
   display: "swap",
   weight: "400",

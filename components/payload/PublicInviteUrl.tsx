@@ -1,11 +1,17 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useFormFields } from "@payloadcms/ui"
 
 export default function PublicInviteUrl() {
   const token = useFormFields(([fields]) => fields?.token?.value as string | undefined)
   const [copied, setCopied] = useState(false)
+  const [origin, setOrigin] = useState<string>("")
+
+  // Use the actual origin the admin is loaded from — independent of build-time env vars.
+  useEffect(() => {
+    if (typeof window !== "undefined") setOrigin(window.location.origin)
+  }, [])
 
   if (!token) {
     return (
@@ -17,7 +23,7 @@ export default function PublicInviteUrl() {
     )
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  const baseUrl = origin || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   const url = `${baseUrl}/q/${token}`
 
   const copy = async () => {
