@@ -4,6 +4,7 @@ import { buildConfig } from "payload"
 import { postgresAdapter } from "@payloadcms/db-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer"
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob"
 import sharp from "sharp"
 
 import { Users } from "./src/collections/Users.ts"
@@ -81,6 +82,15 @@ export default buildConfig({
     },
   }),
   sharp,
+  plugins: [
+    vercelBlobStorage({
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
   localization: {
     locales: [
       { label: "Português", code: "pt" },
