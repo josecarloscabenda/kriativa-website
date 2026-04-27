@@ -27,20 +27,17 @@ export async function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-5">
-            <Link href="/" className="flex items-center gap-3" aria-label={siteConfig.name}>
-              <Image
-                src="/simbolo_white.svg"
-                alt=""
-                width={36}
-                height={36}
-                className="h-9 w-9"
-              />
+            {/*
+              🎨 FOOTER LOGO SIZE — change h-8 below to resize the wordmark.
+              Tailwind heights: h-6 (24px) · h-7 (28px) · h-8 (32px) · h-10 (40px)
+            */}
+            <Link href="/" className="flex items-center" aria-label={siteConfig.name}>
               <Image
                 src="/lettering_white.svg"
                 alt={siteConfig.name}
-                width={160}
-                height={36}
-                className="h-7 w-auto"
+                width={180}
+                height={50}
+                className="h-8 w-auto"
               />
             </Link>
             <p className="font-display text-xs uppercase tracking-[0.32em] text-brand-grey-40">

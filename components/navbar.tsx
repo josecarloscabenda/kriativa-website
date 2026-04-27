@@ -29,21 +29,18 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-brand-grey-10 bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label={`${siteConfig.name} — ${siteConfig.tagline}`}>
-          <Image
-            src="/simbolo_original.svg"
-            alt=""
-            width={36}
-            height={36}
-            className="h-8 w-8"
-            priority
-          />
+        {/*
+          🎨 HEADER LOGO SIZE — change h-7 (height) and/or width below to resize.
+          width/height attrs are intrinsic SVG ratio; className controls render size.
+          Tailwind heights: h-5 (20px) · h-6 (24px) · h-7 (28px) · h-8 (32px) · h-9 (36px)
+        */}
+        <Link href="/" className="flex items-center" aria-label={`${siteConfig.name} — ${siteConfig.tagline}`}>
           <Image
             src="/lettering_original.svg"
             alt={siteConfig.name}
             width={160}
-            height={36}
-            className="hidden h-6 w-auto sm:block"
+            height={45}
+            className="h-7 w-auto"
             priority
           />
         </Link>

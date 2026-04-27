@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+env*
+
+# private/operational documents
+*.pdf
 
 # data storage (leads, contacts)
 /.data
