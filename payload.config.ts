@@ -83,12 +83,15 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
+    // Vercel Blob storage for Media uploads. Token name is custom
+    // (KRIATIVA_READ_WRITE_TOKEN) — set in Vercel project env vars and locally.
+    // When the token is missing, Payload falls back to local FS (dev only).
     vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      enabled: Boolean(process.env.KRIATIVA_READ_WRITE_TOKEN),
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.KRIATIVA_READ_WRITE_TOKEN,
     }),
   ],
   localization: {
