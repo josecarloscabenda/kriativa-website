@@ -61,13 +61,19 @@ function mapPortfolio(p: PayloadPortfolio): PortfolioItem {
     description: p.description,
     category: portfolioCategoryLabel[p.category] ?? "Website",
     tags: arr(p.tags),
-    image:
-      typeof p.image === "object" && p.image && "url" in p.image
-        ? (p.image.url as string | null) ?? null
-        : null,
+    image: uploadUrl(p.image),
     confidential: p.confidential ?? false,
     url: p.url ?? undefined,
   }
+}
+
+// Resolves a Payload upload field (either an ID, a doc, or null) to a string URL.
+const uploadUrl = (value: unknown): string | null => {
+  if (!value) return null
+  if (typeof value === "string" || typeof value === "number") return null
+  if (typeof value !== "object") return null
+  const obj = value as { url?: string | null }
+  return obj.url ?? null
 }
 
 function mapTestimonial(t: PayloadTestimonial): Testimonial {
@@ -77,10 +83,13 @@ function mapTestimonial(t: PayloadTestimonial): Testimonial {
     role: t.role,
     company: t.company,
     content: t.content,
+    avatar: uploadUrl(t.avatar),
   }
 }
 
 function mapPost(p: PayloadPost): BlogPost {
+  // Prefer uploaded coverImage; fall back to legacy imagePath text field.
+  const cover = uploadUrl(p.coverImage) ?? p.imagePath ?? ""
   return {
     id: p.id,
     slug: p.slug,
@@ -90,7 +99,7 @@ function mapPost(p: PayloadPost): BlogPost {
     date: p.publishedAt,
     author: p.author ?? "Equipa Kriativa",
     tags: arr(p.tags),
-    image: p.imagePath ?? "",
+    image: cover,
     readTime: p.readTime ?? "",
   }
 }
@@ -152,7 +161,7 @@ export const getTestimonials = cache(
       collection: "testimonials",
       sort: "order",
       limit: 50,
-      depth: 0,
+      depth: 1,
       locale,
       fallbackLocale: "pt",
     })
@@ -167,7 +176,7 @@ export const getPosts = cache(
       collection: "posts",
       sort: "-publishedAt",
       limit: 100,
-      depth: 0,
+      depth: 1,
       locale,
       fallbackLocale: "pt",
     })
@@ -182,7 +191,7 @@ export const getPostBySlug = cache(
       collection: "posts",
       where: { slug: { equals: slug } },
       limit: 1,
-      depth: 0,
+      depth: 1,
       locale,
       fallbackLocale: "pt",
     })

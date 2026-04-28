@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
 import { Search, ArrowRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -84,10 +85,22 @@ export function BlogList({ posts }: BlogListProps) {
               key={post.slug}
               className="group flex flex-col overflow-hidden border-brand-grey-10 transition-shadow hover:shadow-lg"
             >
-              <div className="aspect-video bg-linear-to-br from-brand-grey-10 to-brand-grey-05 flex items-center justify-center">
-                <span className="font-display text-4xl font-bold text-brand-grey-40">
-                  {post.title.charAt(0)}
-                </span>
+              <div className="relative aspect-video overflow-hidden bg-linear-to-br from-brand-grey-10 to-brand-grey-05">
+                {post.image ? (
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="font-display text-4xl font-bold text-brand-grey-40">
+                      {post.title.charAt(0)}
+                    </span>
+                  </div>
+                )}
               </div>
               <CardContent className="flex flex-1 flex-col pt-4">
                 <div className="flex items-center gap-2 text-xs text-brand-grey-60">

@@ -42,6 +42,7 @@ export interface Testimonial {
   role: string
   company: string
   content: string
+  avatar?: string | null
 }
 
 export interface BlogPost {

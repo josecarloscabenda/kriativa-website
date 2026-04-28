@@ -89,7 +89,13 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: Boolean(process.env.KRIATIVA_READ_WRITE_TOKEN),
       collections: {
-        media: true,
+        // disablePayloadAccessControl: true tells the cloud-storage plugin to
+        // store the direct Vercel Blob CDN URL on the doc.url field, instead
+        // of the Payload-internal /api/media/file/... path that 404s when no
+        // local FS copy exists.
+        media: {
+          disablePayloadAccessControl: true,
+        },
       },
       token: process.env.KRIATIVA_READ_WRITE_TOKEN,
     }),

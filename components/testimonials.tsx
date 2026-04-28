@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getLocale, getTranslations } from "next-intl/server"
 import { Quote } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -31,9 +32,21 @@ export async function Testimonials() {
                   &ldquo;{testimonial.content}&rdquo;
                 </p>
                 <div className="mt-6 flex items-center gap-3 border-t border-brand-grey-10 pt-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-sm font-bold text-white">
-                    {testimonial.name.charAt(0)}
-                  </div>
+                  {testimonial.avatar ? (
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full bg-black">
+                      <Image
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black font-display text-sm font-bold text-white">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                  )}
                   <div>
                     <p className="text-sm font-semibold text-black">{testimonial.name}</p>
                     <p className="text-xs text-brand-grey-60">

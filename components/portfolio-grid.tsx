@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Lock } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -78,11 +79,19 @@ export function PortfolioGrid({ items, limit }: PortfolioGridProps) {
             key={item.id}
             className="group overflow-hidden border-brand-grey-10 transition-shadow hover:shadow-lg"
           >
-            <div className="relative aspect-video bg-linear-to-br from-brand-grey-10 to-brand-grey-05">
+            <div className="relative aspect-video overflow-hidden bg-linear-to-br from-brand-grey-10 to-brand-grey-05">
               {item.confidential ? (
                 <div className="flex h-full items-center justify-center">
                   <Lock className="h-12 w-12 text-brand-grey-40" />
                 </div>
+              ) : item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               ) : (
                 <div className="flex h-full items-center justify-center font-display text-4xl font-bold text-brand-grey-40">
                   {item.title.charAt(0)}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import Image from "next/image"
 import { ArrowLeft, MessageCircle, Clock, Calendar } from "lucide-react"
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server"
 import { Button } from "@/components/ui/button"
@@ -98,6 +99,19 @@ export default async function BlogPostPage({
               <h1 className="mt-4 font-display text-3xl tracking-tight text-black sm:text-4xl">
                 {post.title}
               </h1>
+
+              {post.image && (
+                <div className="relative mt-8 aspect-video overflow-hidden rounded-lg border border-brand-grey-10">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 768px"
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <div className="mt-4 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <Badge key={tag} variant="secondary">
