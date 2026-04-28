@@ -37,6 +37,12 @@ env*
 # private/operational documents
 *.pdf
 
+# Image source folders (originals from Midjourney etc — upload to admin instead of committing)
+/Imagens*
+
+# IDE / workspace files
+*.code-workspace
+
 # data storage (leads, contacts)
 /.data
 
