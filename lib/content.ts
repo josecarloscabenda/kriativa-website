@@ -88,8 +88,12 @@ function mapTestimonial(t: PayloadTestimonial): Testimonial {
 }
 
 function mapPost(p: PayloadPost): BlogPost {
-  // Prefer uploaded coverImage; fall back to legacy imagePath text field.
-  const cover = uploadUrl(p.coverImage) ?? p.imagePath ?? ""
+  // Prefer uploaded coverImage; fall back to legacy imagePath text field —
+  // unless it points to one of the seed placeholder paths that never existed
+  // in /public (we don't want next/Image trying to load a 404).
+  const legacy =
+    p.imagePath && !p.imagePath.startsWith("/placeholder-") ? p.imagePath : ""
+  const cover = uploadUrl(p.coverImage) ?? legacy
   return {
     id: p.id,
     slug: p.slug,
