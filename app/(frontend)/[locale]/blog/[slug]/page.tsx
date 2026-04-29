@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Link } from "@/i18n/navigation"
-import { getPosts, getPostBySlug } from "@/lib/content"
+import { getPostBySlug } from "@/lib/content"
 import { siteConfig } from "@/site.config"
-import { routing, type Locale } from "@/i18n/routing"
+import type { Locale } from "@/i18n/routing"
 
 export const dynamic = "force-dynamic"
 
@@ -19,12 +19,9 @@ const localeMap: Record<string, string> = {
   fr: "fr-FR",
 }
 
-export async function generateStaticParams() {
-  const posts = await getPosts()
-  return routing.locales.flatMap((locale) =>
-    posts.map((post) => ({ locale, slug: post.slug }))
-  )
-}
+// No generateStaticParams: page is force-dynamic, so paths are resolved on
+// demand. Avoids hitting Supabase during the Vercel build (which was tripping
+// the Session pooler's max client limit).
 
 export async function generateMetadata({
   params,

@@ -9,18 +9,14 @@ import { PricingTable, PriceRangeTable } from "@/components/pricing-table"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { CTASection } from "@/components/cta-section"
 import { Link } from "@/i18n/navigation"
-import { getServices, getServiceBySlug } from "@/lib/content"
+import { getServiceBySlug } from "@/lib/content"
 import { siteConfig } from "@/site.config"
-import { routing, type Locale } from "@/i18n/routing"
+import type { Locale } from "@/i18n/routing"
 
 export const dynamic = "force-dynamic"
 
-export async function generateStaticParams() {
-  const services = await getServices()
-  return routing.locales.flatMap((locale) =>
-    services.map((s) => ({ locale, slug: s.slug }))
-  )
-}
+// No generateStaticParams: page is force-dynamic, so paths are resolved on
+// demand. Avoids hitting Supabase during the Vercel build.
 
 export async function generateMetadata({
   params,
