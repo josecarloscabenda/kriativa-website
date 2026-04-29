@@ -77,8 +77,12 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
-      max: 5,
-      idleTimeoutMillis: 10_000,
+      // Tight pool: each Vercel function instance + dev/seed script holds at
+      // most 2 connections, releasing idle ones after 5s. Keeps headroom
+      // under the Supabase free Session pooler cap of 60 clients across
+      // multiple concurrent instances.
+      max: 2,
+      idleTimeoutMillis: 5_000,
     },
   }),
   sharp,
