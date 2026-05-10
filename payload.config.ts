@@ -67,6 +67,9 @@ export default buildConfig({
               user: process.env.SMTP_USER,
               pass: process.env.SMTP_PASS,
             },
+            connectionTimeout: 5_000,
+            greetingTimeout: 5_000,
+            socketTimeout: 10_000,
           },
         })
       : undefined,
